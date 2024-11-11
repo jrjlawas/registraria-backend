@@ -14,6 +14,11 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use('/api/auth', authRoutes_1.default);
+app.use(function (request, response, next) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 exports.default = app;
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
