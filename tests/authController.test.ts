@@ -24,12 +24,17 @@ describe('Authentication', () => {
 //   });
 
   it('should login a user with valid credentials', async () => {
-    // Create a test user
+    //Create a test user
     // const newUser = new User({
     //   username: 'testuser',
     //   password: await bcrypt.hash('testpassword', 10),
+    //   firstName: 'SampleJay';
+    //   middleName: ;
+    //   lastName: string;
+    //   usertype: string;
+    //   enabledStatus : string
     // });
-    // await newUser.save();
+    //await newUser.save();
 
     const res = await request(app)
       .post('/api/auth/login')

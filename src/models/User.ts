@@ -21,5 +21,5 @@ const userSchema = new mongoose.Schema<User>({
   enabledStatus: { type: String, required: true }
 });
 
-const UserModel = mongoose.model<User>('User', userSchema,'users');
+const UserModel = mongoose.model<User>('User', userSchema);
 export default UserModel;

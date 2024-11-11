@@ -16,11 +16,13 @@ exports.login = exports.register = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const User_1 = __importDefault(require("../models/User"));
 const jwtHelper_1 = require("../helpers/jwtHelper");
-const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { username, password } = req.body;
+const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { username, password, firstName, middleName, lastName, } = req.body;
+    var usertype = 'USER';
+    var enabledStatus = 'ENABLED';
     try {
         const hashedPassword = yield bcryptjs_1.default.hash(password, 10);
-        const user = yield User_1.default.create({ username, password: hashedPassword });
+        const user = yield User_1.default.create({ username, password: hashedPassword, firstName, middleName, lastName, usertype, enabledStatus });
         const token = (0, jwtHelper_1.generateToken)(user._id.toString());
         console.log('User registered');
         res.status(201).json({
@@ -46,7 +48,6 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 username: user.username,
                 token: token
             });
-            //console.log('User logged in', user._id);
         }
         else {
             res.status(401).json({ message: 'Invalid credentials' });

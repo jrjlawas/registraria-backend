@@ -9,9 +9,10 @@ export const register = async (req: Request, res: Response) => {
           firstName,
           middleName,
           lastName,
-          usertype,
-          enabledStatus
         } = req.body;
+
+  var usertype = 'USER';
+  var enabledStatus = 'ENABLED';
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await UserModel.create({ username, password: hashedPassword, firstName, middleName, lastName, usertype, enabledStatus });

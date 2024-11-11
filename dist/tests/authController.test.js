@@ -30,12 +30,17 @@ describe('Authentication', () => {
     //     await User.deleteMany({});
     //   });
     it('should login a user with valid credentials', () => __awaiter(void 0, void 0, void 0, function* () {
-        // Create a test user
+        //Create a test user
         // const newUser = new User({
         //   username: 'testuser',
         //   password: await bcrypt.hash('testpassword', 10),
+        //   firstName: 'SampleJay';
+        //   middleName: ;
+        //   lastName: string;
+        //   usertype: string;
+        //   enabledStatus : string
         // });
-        // await newUser.save();
+        //await newUser.save();
         const res = yield (0, supertest_1.default)(server_1.default)
             .post('/api/auth/login')
             .send({
