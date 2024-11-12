@@ -4,24 +4,24 @@ import authRoutes from './routes/authRoutes';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+const corsOptions = {
+  origin: 'https://production.dgf531cc17jnd.amplifyapp.com',  // Replace with your actual front-end domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Add other methods as needed
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Include necessary headers
+  credentials: true,
+};
+
+
 dotenv.config();
 connectDB();
 
 const app = express();
-app.use(cors());
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
-
-
-app.use(function (request, response, next) {
-  response.header('Access-Control-Allow-Origin', 'https://production.dgf531cc17jnd.amplifyapp.com');
-  response.header("Access-Control-Allow-Origin", "*"); // Allow all origins
-  response.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"); // Allow specific methods
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-  response.header('Access-Control-Allow-Credentials', 'true');
-  next();
-});
 
 
 
